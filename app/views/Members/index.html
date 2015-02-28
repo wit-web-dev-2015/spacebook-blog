@@ -1,0 +1,17 @@
+#{extends 'main.html' /} 
+#{set title:'Members' /} 
+
+#{include 'nav/open.html' /}
+  <li>                <a href="/home">Home</a>       </li>
+  <li class="active"> <a href="/members">Members</a> </li>
+  <li>                <a href="/profile">Profile</a> </li>
+  <li>                <a href="/logout">Logout</a>   </li>
+#{include 'nav/close.html' /}
+
+<ul> 
+  #{list items:users, as:'user'}
+    <li> 
+      ${user.firstName} ${user.lastName}  <a href="members/follow/${user.id}"> (follow) </a> 
+    </li>
+  #{/list}
+</ul> 

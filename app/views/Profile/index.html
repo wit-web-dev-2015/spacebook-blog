@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Profile' /}
+
+#{include 'nav/open.html' /}
+  <li><a href="/home">Home</a></li>
+  <li><a href="/members">Members</a></li>
+  <li class="active"><a href="/profile">Profile</a></li>
+  <li><a href="/logout">Logout</a></li>
+#{include 'nav/close.html' /}
+
+  <h1>${user.firstName} ${user.lastName}'s Profile</h1>
+    <p> (${user.email})</p>
+    <div class="row">
+      <div class="span4">
+        <h3>Profile Image</h3>
+        <img src="/profile/getpicture/${user.id}">
+        <form action="/profile/uploadpicture/${user.id}" method="post" enctype="multipart/form-data">     
+          <div class="control-group">
+            <label class="control-label"> Upload your file: </label>
+            <div class="controls">
+              <input type="file" name="picture" />     
+              <input type="submit" name="submit" value="upload"  />  
+            </div>
+          </div>
+        </form>        
+      </div>
+      <div class="span8">
+        <form action="/profile/changestatus" method="POST">
+          <h3>Status Text</h3>
+          <p> ${user.statusText} </p>
+          <div class="control-group">
+            <label class="control-label"> 
+              Enter text: 
+            </label>
+            <textarea name="statusText"></textarea>
+            <button type="submit" class="btn">Change</button>
+          </div>
+        </form>      
+      </div>
+    </div>

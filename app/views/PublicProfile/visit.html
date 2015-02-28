@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'Public Profile Page' /}
+#{include 'nav/open.html' /}
+#{include 'nav/close.html' /}
+
+    <h3>Your Friend ${user.firstName} ${user.lastName}'s Home Page</h3>
+    <div class="row">
+      <div class="span4">
+        <img src="/profile/getpicture/${user.id}"/> 
+        <p> ${user.statusText} </p>
+        <form action="/publicprofile/sendmessage/${user.id}" method="post">    
+	      <div class="control-group">
+	        <span class="label">Leave Message</span>
+            <textarea name="messageText"></textarea>></textarea>
+	        <button type="submit" class="btn">Send</button>
+	      </div>
+	    </form>
+      </div>
+      <div class="span8">
+        <h4>Messages</h4>
+          #{if user.inbox.size() > 0}
+            <ul>
+              #{list items:user.inbox, as:'message'}
+                <li> ${message.from.firstName} says ${message.messageText} </li>
+              #{/list}
+            </ul>
+          #{/if} 
+      </div>
+    <div>  
+    <div class="row">
+      <div class="span12">
+        <hr>
+        <a href="/home">Back to home page</a>
+      </div>
+    </div>

@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{include 'nav/open.html' /}
+  <li class="active"><a href="/home">Home</a></li>
+  <li><a href="/members">Members</a></li>
+  <li><a href="/profile">Profile</a></li>
+  <li><a href="/logout">Logout</a></li>
+#{include 'nav/close.html' /}
+
+    <h1>${user.firstName} ${user.lastName}</h1>
+
+    <div class="row">
+      <div class="span4">
+        <h4>Friends (${user.friendships.size()})</h4>
+	    <ul> 
+	      #{list items:user.friendships, as:'friendship'}
+           <li> 
+              <a href="/publicprofile/${friendship.targetUser.id}"> ${friendship.targetUser.firstName} ${friendship.targetUser.lastName} 
+              (<a href="/home/drop/${friendship.targetUser.id}"> drop </a>)
+           </li>
+	      #{/list}
+	    </ul> 
+      </div>
+      <div class="span8">
+        <h4>Messages</h4>
+          #{if user.inbox.size() > 0}
+            <ul>
+              #{list items:user.inbox, as:'message'}
+                <li> ${message.from.firstName} says "${message.messageText}" </li>
+              #{/list}
+            </ul>
+          #{/if} 
+      </div>
+    </div>
+
+
+ 

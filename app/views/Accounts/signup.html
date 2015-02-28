@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Signup for Spacebook' /}
+
+#{include 'nav/open.html' /}
+  <li class="active"> <a href="/signup"> Signup  </a></li>
+  <li>                <a href="/login">  Login    </a></li>
+#{include 'nav/close.html' /}
+
+<form action="/register" method="POST">
+  <div class="control-group">
+    <div class="controls">
+      <label class="control-label">  First Name: </label>
+      <input type="text" name="firstName">
+      <label class="control-label">  Last Name:  </label>
+      <input type="text" name="lastName">
+      <label class="control-label">  Email:      </label>
+      <input type="text" name="email">
+      <label class="control-label">  Password:   </label> 
+      <input type="password" name="password">
+    </div>
+    <button type="submit" class="btn btn-primary"> Signup  </button>
+  </div> 
+</form>
