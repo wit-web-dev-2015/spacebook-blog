@@ -15,65 +15,10 @@
 <section class="ui  two column grid segment">
   <div class="row">
     <div class="column">
-      <section class="ui stacked segment">
-        <a href="/editprofile" class="ui button"> Edit </a>
-        <table class="ui table segment">
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>Nationality</th>
-              <th>Age</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>${user.email}</td>
-              <td>${user.nationality}</td>
-              <td>${user.age}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="ui medium image">
-          <label class="ui ribbon label">Profile Image</label>
-          <img src="/profile/getpicture/${user.id}">
-        </div>  
-        <section class="ui raised form segment">
-          <form action="/profile/uploadpicture/${user.id}" method="post" enctype="multipart/form-data">     
-            <div class="ui field">
-              <input type="file" name="picture">  </input> 
-           </div>     
-           <button class="ui blue submit button"> Upload</button>       
-          </form>        
-        </section>
-        <div class="ui medium image">
-          <label class="ui ribbon label">Thumbnail Image</label>
-          <img src="/profile/getthumbnail/${user.id}">
-        </div>
-        <section class="ui raised form segment">
-          <form action="/profile/uploadthumbnail/${user.id}" method="post" enctype="multipart/form-data">     
-            <div class="ui field">
-              <input type="file" name="picture">  </input> 
-           </div>     
-           <button class="ui blue submit button"> Upload</button>       
-          </form>        
-        </section>      
-      </section>  
+      #{include "components/profileimages.html" /} 
     </div>
     <div class="column">
-      <section class="ui stacked segment">
-        <h4 class="ui inverted red block header"> Status</h4>
-        <div class="ui message">
-          <p> ${user.statusText} </p>
-        </div>
-         <section class="ui form segment">
-          <form action="/profile/changestatus" method="POST">
-            <div class="field">
-              <textarea name="statusText"></textarea>
-            </div>
-            <button class="ui button teal submit labeled icon"><i class="icon edit"></i> Update </button>
-          </form>
-        </section>
-      </section>      
+      #{include "components/statusupdate.html" /}   
     </div>
   </div>
 </section>
