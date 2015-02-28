@@ -1,16 +1,15 @@
 #{extends 'main.html' /}
-#{set title:'Signup for Spacebook' /}
+#{set title:'Edit Details' /}
 
 <nav class="ui inverted menu">
   <header class="header item"> Spacebook </header>
   <div class="right menu">
-    <a class="active item" href="/signup"> Signup  </a>
-    <a class="item" href="/login">  Login   </a>
+    <a class="active item" href="/profile"> Back to Profile  </a>
   </div>
 </nav> 
 
 <div class="ui raised form segment">
-  <form action="/register" method="POST">
+  <form action="/editprofile/change" method="POST">
     <div class="two fields">
       <div class="field">
         <label>First Name</label>
@@ -40,4 +39,4 @@
     </div>
     <button class="ui blue submit button">Submit</button>
   </form>
-</div>  
+</div>

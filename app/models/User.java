@@ -18,6 +18,8 @@ public class User extends Model
   public String password;
   public String statusText;
   public Blob   profilePicture;
+  public int    age;
+  public String nationality;
 
   @OneToMany(mappedBy = "sourceUser")
   public List<Friendship> friendships = new ArrayList<Friendship>();
@@ -29,13 +31,16 @@ public class User extends Model
   public List<Message> outbox = new ArrayList<Message>();
   
   
-  public User(String firstName, String lastName, String email, String password)
+  public User(String firstName, String lastName, String email, String password, int age, String nationality)
   {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
+    this.age = age;
+    this.nationality = nationality;
   }
+  
   public static User findByEmail(String email)
   {
     return find("email", email).first();

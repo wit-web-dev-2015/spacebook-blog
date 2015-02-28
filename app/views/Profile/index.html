@@ -15,8 +15,24 @@
 <section class="ui  two column grid segment">
   <div class="row">
     <div class="column">
-      <section class="ui stacked segment">
-        <h4 class="ui inverted red block header">${user.email}</h4>
+      <section ui="ui stacked segment">
+        <a href="/editprofile" class="ui button"> Edit </a>
+        <table class="ui table segment">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Nationality</th>
+              <th>Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${user.email}</td>
+              <td>${user.nationality}</td>
+              <td>${user.age}</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="ui medium image">
           <label class="ui ribbon label">Profile Image</label>
           <img src="/profile/getpicture/${user.id}">

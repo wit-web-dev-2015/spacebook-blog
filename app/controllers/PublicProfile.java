@@ -9,13 +9,10 @@ import models.*;
 
 public class PublicProfile extends Controller
 {
-  public static void index()
-  {
-    render();
-  }
-
   public static void visit(Long id)
   {
+    User currentUser = Accounts.getLoggedInUser();
+    
     User user = User.findById(id);
     Logger.info("Just visiting the page for " + user.firstName + ' ' + user.lastName);
     render(user);
@@ -23,8 +20,7 @@ public class PublicProfile extends Controller
 
   public static void sendMessage(Long id, String messageText)
   {
-    String userId = session.get("logged_in_userid");
-    User fromUser = User.findById(Long.parseLong(userId));
+    User fromUser = Accounts.getLoggedInUser();;
     User toUser = User.findById(id);
     
     Logger.info("Message from user " + 

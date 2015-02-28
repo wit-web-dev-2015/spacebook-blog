@@ -11,19 +11,16 @@ public class Members extends Controller
 {
   public static void index()
   {
+    User user = Accounts.getLoggedInUser();
     List<User> users = User.findAll();
     render(users);
   }
   
   public static void follow(Long id)
   {
+    User user = Accounts.getLoggedInUser();
     User friend = User.findById(id);
-    
-    String userId = session.get("logged_in_userid");
-    User me = User.findById(Long.parseLong(userId));
-    
-    me.befriend(friend);
-
+    user.befriend(friend);
     Home.index();
   }
 }

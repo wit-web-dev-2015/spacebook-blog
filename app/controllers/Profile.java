@@ -12,15 +12,13 @@ public class Profile extends Controller
 {
   public static void index()
   {
-    String userId = session.get("logged_in_userid");
-    User user = User.findById(Long.parseLong(userId));
+    User user = Accounts.getLoggedInUser();
     render(user);
   }
   
   public static void changeStatus(String statusText)
   {
-    String userId = session.get("logged_in_userid");
-    User user = User.findById(Long.parseLong(userId));
+    User user = Accounts.getLoggedInUser();
     user.statusText = statusText;
     user.save();
     Logger.info("Status changed to " + statusText);
@@ -46,5 +44,4 @@ public class Profile extends Controller
     Logger.info("saving picture");
     index();
   }  
-  
 }
