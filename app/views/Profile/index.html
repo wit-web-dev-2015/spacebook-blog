@@ -15,7 +15,7 @@
 <section class="ui  two column grid segment">
   <div class="row">
     <div class="column">
-      <section ui="ui stacked segment">
+      <section class="ui stacked segment">
         <a href="/editprofile" class="ui button"> Edit </a>
         <table class="ui table segment">
           <thead>
@@ -45,6 +45,18 @@
            <button class="ui blue submit button"> Upload</button>       
           </form>        
         </section>
+        <div class="ui medium image">
+          <label class="ui ribbon label">Thumbnail Image</label>
+          <img src="/profile/getthumbnail/${user.id}">
+        </div>
+        <section class="ui raised form segment">
+          <form action="/profile/uploadthumbnail/${user.id}" method="post" enctype="multipart/form-data">     
+            <div class="ui field">
+              <input type="file" name="picture">  </input> 
+           </div>     
+           <button class="ui blue submit button"> Upload</button>       
+          </form>        
+        </section>      
       </section>  
     </div>
     <div class="column">
