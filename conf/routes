@@ -26,6 +26,8 @@ GET     /profile                                Profile.index
 POST    /profile/changestatus                   Profile.changeStatus
 POST    /profile/uploadpicture/{id}             Profile.uploadPicture
 GET     /profile/getpicture/{id}                Profile.getPicture
+POST    /profile/uploadthumbnail/{id}           Profile.uploadThumbnail
+GET     /profile/getthumbnail/{id}              Profile.getThumbnail
 
 # Edit Detsils page
 GET     /editprofile                            EditProfile.index
@@ -34,6 +36,10 @@ POST    /editprofile/change                     EditProfile.change
 # Public Profiles
 GET     /publicprofile/{id}                     PublicProfile.visit
 POST    /publicprofile/sendmessage/{id}         PublicProfile.sendMessage
+
+# Blog
+GET   /blog                                     Blog.index
+POST  /blog/newpost                             Blog.newPost
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -1,10 +1,11 @@
 package models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 import play.db.jpa.Model;
 import play.db.jpa.Blob;
@@ -30,6 +31,9 @@ public class User extends Model
   
   @OneToMany(mappedBy = "from")
   public List<Message> outbox = new ArrayList<Message>();
+  
+  @OneToMany
+  public List<Post> posts = new ArrayList<Post>();
   
   
   public User(String firstName, String lastName, String email, String password, int age, String nationality)

@@ -1,28 +1,25 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Blog' /}
 
 <nav class="ui inverted menu">
   <header class="header item"> Spacebook </header>
   <div class="right menu">
-    <a class="active item" href="/home">Home</a></li>
+    <a class="item" href="/home">Home</a></li>
     <a class="item" href="/members">Members</a>
     <a class="item" href="/profile">Profile</a>
-    <a class="item" href="/blog">Blog</a>
+    <a class="active item" href="/blog">Blog</a>
     <a class="item" href="/logout">Logout</a>
   </div>
 </nav> 
 
-<h1 class="ui inverted teal block header" >${user.firstName} ${user.lastName}</h1>
+<h1 class="ui inverted teal block header" >Blog  </h1>
 <section class="ui two column grid segment">
   <div class="row">
     <div class="ui column">
-      #{include "components/friends.html" /} 
+      #{include "components/createpost.html" /} 
     </div>
     <div class="column">
-      #{include "components/messages.html" /} 
+      #{include "components/displayposts.html" /} 
     </div>
   </div>
 </section>
-
-
- 
