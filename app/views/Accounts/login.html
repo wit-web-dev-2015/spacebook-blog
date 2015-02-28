@@ -1,19 +1,23 @@
 #{extends 'main.html' /}
 #{set title:'Login to Spacebook' /}
 
-#{include 'nav/open.html' /}
-  <li>                 <a href="/signup"> Signup  </a></li>
-  <li class="active">  <a href="/login">  Login    </a></li>
-#{include 'nav/close.html' /}
-
- <form action="/authenticate" method="POST">
-  <div class="control-group">
-    <div class="controls">
-      <label class="control-label">  Username: </label>
+<nav class="ui inverted menu">
+  <header class="header item"> Spacebook </header>
+  <div class="right menu">
+    <a class="item" href="/signup"> Signup  </a>
+    <a class="active item" href="/login"> Login  </a>
+  </div>
+</nav> 
+<section class="ui raised form segment">
+  <form action="/authenticate" method="POST">
+    <div class="field">
+      <label> Username: </label>
       <input type="text" name="email">
-      <label class="control-label">  Password: </label>
+    </div>  
+    <div class="field">
+      <label>  Password: </label>
       <input type="password" name="password">
     </div>
-    <button type="submit" class="btn btn-primary"> Login  </button>
-  </div>
-</form>
+    <button class="ui blue submit button">Login</button>
+  </form>
+</section>

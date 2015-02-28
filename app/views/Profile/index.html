@@ -1,40 +1,51 @@
 #{extends 'main.html' /}
 #{set title:'Profile' /}
 
-#{include 'nav/open.html' /}
-  <li><a href="/home">Home</a></li>
-  <li><a href="/members">Members</a></li>
-  <li class="active"><a href="/profile">Profile</a></li>
-  <li><a href="/logout">Logout</a></li>
-#{include 'nav/close.html' /}
+<nav class="ui inverted menu">
+  <header class="header item"> Spacebook </header>
+  <div class="right menu">
+    <a class="item" href="/home">Home</a></li>
+    <a class="item" href="/members">Members</a>
+    <a class="active item" href="/profile">Profile</a>
+    <a class="item" href="/logout">Logout</a>
+  </div>
+</nav> 
 
-  <h1>${user.firstName} ${user.lastName}'s Profile</h1>
-    <p> (${user.email})</p>
-    <div class="row">
-      <div class="span4">
-        <h3>Profile Image</h3>
-        <img src="/profile/getpicture/${user.id}">
-        <form action="/profile/uploadpicture/${user.id}" method="post" enctype="multipart/form-data">     
-          <div class="control-group">
-            <label class="control-label"> Upload your file: </label>
-            <div class="controls">
-              <input type="file" name="picture" />     
-              <input type="submit" name="submit" value="upload"  />  
-            </div>
-          </div>
-        </form>        
-      </div>
-      <div class="span8">
-        <form action="/profile/changestatus" method="POST">
-          <h3>Status Text</h3>
-          <p> ${user.statusText} </p>
-          <div class="control-group">
-            <label class="control-label"> 
-              Enter text: 
-            </label>
-            <textarea name="statusText"></textarea>
-            <button type="submit" class="btn">Change</button>
-          </div>
-        </form>      
-      </div>
+<h1 class="ui inverted teal block header" >${user.firstName} ${user.lastName}'s Profile</h1>
+<section class="ui  two column grid segment">
+  <div class="row">
+    <div class="column">
+      <section class="ui stacked segment">
+        <h4 class="ui inverted red block header">${user.email}</h4>
+        <div class="ui medium image">
+          <label class="ui ribbon label">Profile Image</label>
+          <img src="/profile/getpicture/${user.id}">
+        </div>  
+        <section class="ui raised form segment">
+          <form action="/profile/uploadpicture/${user.id}" method="post" enctype="multipart/form-data">     
+            <div class="ui field">
+              <input type="file" name="picture">  </input> 
+           </div>     
+           <button class="ui blue submit button"> Upload</button>       
+          </form>        
+        </section>
+      </section>  
     </div>
+    <div class="column">
+      <section class="ui stacked segment">
+        <h4 class="ui inverted red block header"> Status</h4>
+        <div class="ui message">
+          <p> ${user.statusText} </p>
+        </div>
+         <section class="ui form segment">
+          <form action="/profile/changestatus" method="POST">
+            <div class="field">
+              <textarea name="statusText"></textarea>
+            </div>
+            <button class="ui button teal submit labeled icon"><i class="icon edit"></i> Update </button>
+          </form>
+        </section>
+      </section>      
+    </div>
+  </div>
+</section>

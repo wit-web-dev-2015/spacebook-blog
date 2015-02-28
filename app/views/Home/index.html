@@ -1,38 +1,50 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{include 'nav/open.html' /}
-  <li class="active"><a href="/home">Home</a></li>
-  <li><a href="/members">Members</a></li>
-  <li><a href="/profile">Profile</a></li>
-  <li><a href="/logout">Logout</a></li>
-#{include 'nav/close.html' /}
+<nav class="ui inverted menu">
+  <header class="header item"> Spacebook </header>
+  <div class="right menu">
+    <a class="active item" href="/home">Home</a></li>
+    <a class="item" href="/members">Members</a>
+    <a class="item" href="/profile">Profile</a>
+    <a class="item" href="/logout">Logout</a>
+  </div>
+</nav> 
 
-    <h1>${user.firstName} ${user.lastName}</h1>
-
-    <div class="row">
-      <div class="span4">
-        <h4>Friends (${user.friendships.size()})</h4>
-	    <ul> 
-	      #{list items:user.friendships, as:'friendship'}
-           <li> 
-              <a href="/publicprofile/${friendship.targetUser.id}"> ${friendship.targetUser.firstName} ${friendship.targetUser.lastName} 
-              (<a href="/home/drop/${friendship.targetUser.id}"> drop </a>)
-           </li>
-	      #{/list}
-	    </ul> 
-      </div>
-      <div class="span8">
-        <h4>Messages</h4>
-          #{if user.inbox.size() > 0}
-            <ul>
-              #{list items:user.inbox, as:'message'}
-                <li> ${message.from.firstName} says "${message.messageText}" </li>
-              #{/list}
-            </ul>
-          #{/if} 
-      </div>
+<h1 class="ui inverted teal block header" >${user.firstName} ${user.lastName}</h1>
+<section class="ui two column grid segment">
+  <div class="row">
+    <div class="ui column">
+      <section class="ui stacked segment">
+        <h4 class="ui inverted red block header">Friends (${user.friendships.size()})</h4>
+        <div class="ui list"> 
+          #{list items:user.friendships, as:'friendship'}
+            <div class="ui item"> 
+              <i class="user icon"></i>
+              <a href="/publicprofile/${friendship.targetUser.id}"> ${friendship.targetUser.firstName} ${friendship.targetUser.lastName} </a>
+               (<a href="/home/drop/${friendship.targetUser.id}"> drop </a>)
+            </div>
+          #{/list}
+        </div> 
+      </section>  
     </div>
+    <div class="column">
+      <section class="ui stacked segment">
+        <h4 class="ui inverted blue block header">Messages</h4>
+        #{if user.inbox.size() > 0}
+          <div class="ui list"> 
+            #{list items:user.inbox, as:'message'}
+              <div class="item"> 
+                <i class="chat icon"></i>
+                ${message.from.firstName} says "${message.messageText}" 
+              </div>
+            #{/list}
+          </div>
+        #{/if} 
+      </section>
+    </div>
+  </div>
+</section>
 
 
  
