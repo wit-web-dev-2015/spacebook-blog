@@ -1,5 +1,7 @@
 import models.User;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -9,18 +11,30 @@ import play.test.UnitTest;
 
 public class UserTest extends UnitTest
 {
+  private User bob;
+  
   @BeforeClass
   public static void loadDB()
   {
     Fixtures.deleteAllModels();
   }
 
+  @Before
+  public void setup()
+  {
+    bob = new User("bob", "jones", "bob@jones.com", "secret",  20, "irish");
+    bob.save();
+  }
+  
+  @After
+  public void teardown()
+  {
+    bob.delete();
+  }
+  
   @Test
   public void testCreateUser()
   {
-    User bob = new User("bob", "jones", "bob@jones.com", "secret", 20, "irish");
-    bob.save();
-    
     User testUser = User.findByEmail("bob@jones.com");
     assertNotNull (testUser);
   }
@@ -28,13 +42,7 @@ public class UserTest extends UnitTest
   @Test
   public void testFindUser()
   {
-    User jim = new User("jim", "smith", "jim@smith.com", "secret", 20, "irish");
-    jim.save();
-    
-    User test = User.findByEmail("jim@smith.com");
-    assertNotNull (test);
-
     User alice = User.findByEmail("alice@jones.com");
     assertNull (alice);
-  } 
+  }  
 }
